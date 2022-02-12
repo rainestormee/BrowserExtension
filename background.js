@@ -9,11 +9,9 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
         let url = tabs[0].url; // get the URL of the currently open tab
         if (url.startsWith("chrome://")) return;
-        console.log("not a chrome tab");
         if (!url.includes("youtube")) {
             return;
         }
-        alert("YouTube Tab!");
         fetch(url, {mode: 'no-cors'}).then((r) => r.text().then(content => {
             // post the content of the webpage to the API
             console.log("sending data to API")
