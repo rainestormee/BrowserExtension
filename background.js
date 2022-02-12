@@ -13,7 +13,6 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         if (!url.includes("youtube")) {
             return;
         }
-        alert("YouTube Tab!");
         postData(config.url, {url: url, content: "YouTube video", username: "Sanskruti"}).then().catch(e => console.log(e));
     });
 });
