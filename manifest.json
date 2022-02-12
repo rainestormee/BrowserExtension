@@ -1,0 +1,10 @@
+{
+  "name": "A different name",
+  "version": "1.0",
+  "description": "Build an Basic Extension!",
+  "permissions": ["activeTab"],
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "manifest_version": 2
+}
