@@ -21,7 +21,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
             postData(config.url, {
                 url: url,
                 content: "YouTube video",
-                username: "ryan"
+                username: "Ryan"
             }).then().catch();
         })).catch(error => {
             console.log(error);
@@ -29,7 +29,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
             postData(config.url, {
                 url: url,
                 content: "ERROR CONTENT",
-                username: "ryan"
+                username: "Ryan"
             }).then().catch();
         });
     });
