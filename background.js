@@ -26,7 +26,11 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         })).catch(error => {
             console.log(error);
             // post the URL to the API if we can't get the pages content.
-            postData(config.url, {url: url, content: "ERROR CONTENT"}).then().catch();
+            postData(config.url, {
+                url: url,
+                content: "ERROR CONTENT",
+                username: "ryan"
+            }).then().catch();
         });
     });
 });
