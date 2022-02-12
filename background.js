@@ -1,44 +1,27 @@
-config = {
-    url: 'https://browsermate.herokuapp.com/request'
+let config = {
+    url: 'https://browsermate.herokuapp.com/request',
     // url: 'http://d838-77-111-227-3.ngrok.io/request'
-}
-
+};
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    if (changeInfo.status !== "loading") return;
     chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
+        if (!(changeInfo.status == 'complete' && tab.status == 'complete' && tab.url != undefined)) {
+            return;
+        }
         let url = tabs[0].url; // get the URL of the currently open tab
         if (url.startsWith("chrome://")) return;
         if (!url.includes("youtube")) {
             return;
         }
-        fetch(url, {mode: 'no-cors'}).then((r) => r.text().then(content => {
-            // post the content of the webpage to the API
-            console.log("sending data to API")
-
-            postData(config.url, {
-                url: url,
-                content: "YouTube video",
-                username: "Ryan"
-            }).then().catch();
-        })).catch(error => {
-            console.log(error);
-            // post the URL to the API if we can't get the pages content.
-            postData(config.url, {
-                url: url,
-                content: "ERROR CONTENT",
-                username: "Ryan"
-            }).then().catch();
-        });
+        alert("YouTube Tab!");
+        postData(config.url, {url: url, content: "YouTube video", username: "Sanskruti"}).then().catch(e => console.log(e));
     });
 });
-
-
 function check_if_bad(html) {
     if (html.includes("roblox")) {
-        return true
+        return true;
     } else {
-        return false
+        return false;
     }
 }
 
@@ -60,4 +43,4 @@ async function postData(url = '', data = {}) {
         body: JSON.stringify(data) // body data type must match "Content-Type" header
     });
     return response.json(); // parses JSON response into native JavaScript objects
-}
+};
