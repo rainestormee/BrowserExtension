@@ -2,9 +2,9 @@
   "name": "A different name",
   "version": "1.0",
   "description": "Build an Basic Extension!",
-  "permissions": ["activeTab"],
-  "browser_action": {
-    "default_popup": "popup.html"
+  "permissions": ["activeTab", "tabs"],
+  "background": {
+    "scripts": ["background.js"]
   },
   "manifest_version": 2
 }
