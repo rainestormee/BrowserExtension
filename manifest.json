@@ -1,8 +1,12 @@
 {
-  "name": "A different name",
+  "name": "BrowserMate",
   "version": "1.0",
-  "description": "Build an Basic Extension!",
-  "permissions": ["activeTab", "tabs"],
+  "description": "",
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "permissions": ["activeTab", "tabs", "storage"],
   "background": {
     "scripts": ["background.js"]
   },

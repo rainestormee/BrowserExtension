@@ -3,19 +3,34 @@ let config = {
     // url: 'http://d838-77-111-227-3.ngrok.io/request'
 };
 
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
-        if (!(changeInfo.status == 'complete' && tab.status == 'complete' && tab.url != undefined)) {
-            return;
-        }
-        let url = tabs[0].url; // get the URL of the currently open tab
-        if (url.startsWith("chrome://")) return;
-        if (!url.includes("youtube")) {
-            return;
-        }
-        postData(config.url, {url: url, content: "YouTube video", username: "Sanskruti"}).then().catch(e => console.log(e));
-    });
+let options = {
+    name: "Ryan",
+    message: "%name% is accessing content that they shouldn't be. %link%",
+    formatted_message: "Ryan is accessing content that they shouldn't be.",
+    number: "+447579065474",
+}
+
+chrome.tabs.onUpdated.addListener(function (tabId, info, tab) {
+
+    // chrome.storage.sync.get(['username'], function(result) {
+    //     console.log('Value currently is ' + result.key);
+    //     alert(result.key);
+    // });
+    if (info.status != 'complete') return;
+
+    let url = tab.url; // get the URL of the currently open tab
+    if (url.startsWith("chrome://")) return;
+    if (!url.includes("youtube")) {
+        return;
+    }
+    postData(config.url, {
+        url: url,
+        message: options.formatted_message + url,
+        username: name,
+        number: "+447579065474"
+    }).then().catch(e => console.log(e));
 });
+
 function check_if_bad(html) {
     if (html.includes("roblox")) {
         return true;

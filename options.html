@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <script defer src="save-content.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section class="hero is-info">
+    <div class="hero-body">
+        <p class="title">
+            BrowserMate
+        </p>
+        <p class="subtitle">
+            Set options here.
+        </p>
+    </div>
+</section>
+<section class="section">
+    <form id="optionsForm">
+        <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+                <input class="input" id="name" type="text" placeholder="Set the name of this Browser!" value="Ryan">
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Phone Number</label>
+            <div class="control">
+                <input class="input is-success" id="number" type="tel" placeholder="Your phone number" value="+44579065474">
+
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Message</label>
+            <div class="control">
+                <textarea class="textarea" placeholder="Message content">%name% is accessing content that they shouldn't be. %link%</textarea>
+            </div>
+        </div>
+
+        <div class="field">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Tracked Websites</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th><input class="input" type="text" value="https://youtube.com/"></th>
+                        <th><a class="button">Delete</a></th>
+                    </tr>
+                    <tr>
+                        <th><input class="input" type="text"></th>
+                        <th><a class="button">Add New</a></th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <label class="checkbox">
+                    <input type="checkbox">
+                    I agree to the <a href="#">terms and conditions</a>
+                </label>
+            </div>
+        </div>
+
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button is-link">Submit</button>
+            </div>
+            <div class="control">
+                <button class="button is-link is-light">Cancel</button>
+            </div>
+        </div>
+    </form>
+</section>
+</body>
+</html>
