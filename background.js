@@ -8,6 +8,22 @@ let options = {
     message: "%name% is accessing content that they shouldn't be. %link%",
     formatted_message: "Ryan is accessing content that they shouldn't be.",
     number: "+447579065474",
+    agreed: true,
+    tracked_websites: [
+        "https://www.youtube.com/",
+        "https://twitter.com/",
+        "https://www.facebook.com/",
+        "https://www.twitch.tv/"
+    ]
+}
+
+function isBlocked(url, blocked_sites) {
+    for (let blocked_site of blocked_sites) {
+        if (url.startsWith(blocked_site)) {
+            return true;
+        }
+    }
+    return false;
 }
 
 chrome.tabs.onUpdated.addListener(function (tabId, info, tab) {
@@ -16,13 +32,16 @@ chrome.tabs.onUpdated.addListener(function (tabId, info, tab) {
     //     console.log('Value currently is ' + result.key);
     //     alert(result.key);
     // });
+    // if (!options.agreed) return;
     if (info.status != 'complete') return;
+
 
     let url = tab.url; // get the URL of the currently open tab
     if (url.startsWith("chrome://")) return;
-    if (!url.includes("youtube")) {
-        return;
-    }
+
+
+    if (!isBlocked(url, options.tracked_websites)) return;
+
     postData(config.url, {
         url: url,
         message: options.formatted_message + url,
